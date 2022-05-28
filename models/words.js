@@ -8,7 +8,7 @@ const Word = function (word) {
 };
 
 Word.lookUp = (word, result) => {
-    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substring_index(substr(detail, position('-' IN detail)), '{', 1) as subMeaning FROM tbl_edict WHERE word LIKE "${word}%"`, (err, res) => {
+    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substring_index(substr(detail, position('}-' IN detail) + 1), '{', 1) as subMeaning FROM tbl_edict WHERE word LIKE "${word}%"`, (err, res) => {
         if(err) {
             console.log('error: ', err);
             result(err, null);
@@ -41,7 +41,7 @@ Word.search = (word, result) => {
 };
 
 Word.showFavorite = (result) => {
-    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substring_index(substr(detail, position('-' IN detail)), '{', 1) as subMeaning FROM tbl_edict WHERE favorite = 1`, (err, res) => {
+    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substring_index(substr(detail, position('}-' IN detail) + 1), '{', 1) as subMeaning FROM tbl_edict WHERE favorite = 1`, (err, res) => {
         if(err) {
             console.log('error: ', err);
             result(err, null);
@@ -93,7 +93,7 @@ Word.unlike = (word, result) => {
 }
 
 Word.recent = (result) => {
-    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) AS pronunciation, substring_index(substr(detail, position('-' IN detail)), '{', 1) AS subMeaning FROM tbl_edict WHERE recent IS NOT NULL ORDER BY recent DESC LIMIT 20`, (err, res) => {
+    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) AS pronunciation, substring_index(substr(detail, position('}-' IN detail) + 1), '{', 1) AS subMeaning FROM tbl_edict WHERE recent IS NOT NULL ORDER BY recent DESC LIMIT 20`, (err, res) => {
         if(err) {
             console.log('error: ', err);
             result(err, null);
