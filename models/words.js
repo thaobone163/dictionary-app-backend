@@ -7,6 +7,22 @@ const Word = function (word) {
     this.favorite = word.favorite;
 };
 
+Word.lookUp = (word, result) => {
+    sql.query(`SELECT word FROM tbl_edict WHERE word LIKE "${word}%"`, (err, res) => {
+        if(err) {
+            console.log('error: ', err);
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            console.log('found list of word: ', res);
+            result(null, res);
+            return;
+        }
+        result({kind: 'not_found'}, null);
+    });
+};
+
 Word.search = (word, result) => {
     sql.query(`SELECT detail FROM tbl_edict WHERE word = "${word}"`, (err, res) => {
         if(err) {

@@ -1,5 +1,21 @@
 const Word = require('../models/words');
 
+exports.lookUp = (req, res) => {
+    Word.lookUp(req.params.word, (err, data) =>{
+        if(err) {
+            if(err.kind === 'not_found') {
+                res.status(404).send({
+                    message: `Not found list of word`
+                });
+            } else {
+                res.status(500).send({
+                    message: 'Error'
+                });
+            }
+        } else res.send(data);
+    });
+};
+
 exports.search = (req, res) => {
     Word.search(req.params.word, (err, data) =>{
         if(err) {
