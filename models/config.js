@@ -1,6 +1,6 @@
 module.exports = {
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'Bone163@',
-    database: 'dictionary',
+    host: 'db4free.net',
+    user: 'thaobone',
+    password: 'thaobone',
+    database: 'dictionary_app',
 }
