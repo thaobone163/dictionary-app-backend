@@ -104,7 +104,7 @@ exports.add = (req, res) => {
     }
     const word =  new Word({
         word: req.body.word,
-        detail: req.body.pronunciation + '{"\n"}' + req.body.meaning
+        detail: ' ' + req.body.pronunciation + '{"\n"}' + req.body.meaning
     })
 
     Word.add(word, (err, data) => {
