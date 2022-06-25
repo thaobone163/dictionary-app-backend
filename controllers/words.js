@@ -118,6 +118,7 @@ exports.add = (req, res) => {
             message: "Content can not be empty!"
         });
     }
+    console.log(req.body.pronunciation)
     const word =  new Word({
         word: req.body.word,
         detail: ' ' + req.body.pronunciation + '{"\n"}' + req.body.meaning,
