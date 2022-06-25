@@ -135,7 +135,7 @@ Word.add = (newWord, result) => {
             result({kind: 'exists'}, null);
             return;
         }
-        sql.query(`INSERT INTO tbl_edict(word, detail, synonym, antonyms, changeAble) VALUES ('${newWord.word}', "${newWord.detail}", '${newWord.synonym}','${newWord.antonyms}', 1)`, (err, res) => {
+        sql.query(`INSERT INTO tbl_edict(word, detail, synonym, antonyms, changeAble) VALUES ('${newWord.word}','${newWord.detail}', '${newWord.synonym}','${newWord.antonyms}', 1)`, (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
