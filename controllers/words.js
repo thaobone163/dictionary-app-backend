@@ -168,7 +168,7 @@ exports.update = (req, res) => {
 
     const word =  new Word({
         word: req.body.word,
-        detail: " " + req.body.pronunciation.replace("'", "\\'") + "{\"/n\"}" + req.body.meaning,
+        detail: " " + req.body.pronunciation + "{\"/n\"}" + req.body.meaning,
         synonym: req.body.synonym,
         antonyms: req.body.antonyms
     })
