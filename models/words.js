@@ -12,7 +12,7 @@ const Word = function (word) {
 };
 
 Word.lookUp = (word, result) => {
-    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substring_index(substr(detail, position('}-' IN detail) + 1), '{', 1) as subMeaning FROM tbl_edict WHERE word LIKE "${word}%"`, (err, res) => {
+    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substring_index(substr(detail, position('}-' IN detail) + 1), '{', 1) as subMeaning, changeAble FROM tbl_edict WHERE word LIKE "${word}%"`, (err, res) => {
         if (err) {
             console.log('error: ', err);
             result(err, null);
