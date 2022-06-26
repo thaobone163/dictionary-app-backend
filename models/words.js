@@ -28,7 +28,7 @@ Word.lookUp = (word, result) => {
 };
 
 Word.search = (word, result) => {
-    sql.query(`SELECT substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substr(detail, position('}' IN detail) + 1) as meaning, favorite, synonym, antonyms, changeAble FROM tbl_edict WHERE word = "${word}"`, (err, res) => {
+    sql.query(`SELECT word, substring_index(substr(detail, position(' /' IN detail)), '{', 1) as pronunciation, substr(detail, position('}' IN detail) + 1) as meaning, favorite, synonym, antonyms, changeAble FROM tbl_edict WHERE word = "${word}"`, (err, res) => {
         if (err) {
             console.log('error: ', err);
             result(err, null);
